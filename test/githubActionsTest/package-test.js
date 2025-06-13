@@ -1,4 +1,4 @@
-const { wcswidth, wcwidth } = require('../../dist/index.js');
+const { wcswidth, wcwidth } = require('simple-wcswidth');
 const assert = require('assert');
 
 function runAllTests() {
