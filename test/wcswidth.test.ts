@@ -27,4 +27,21 @@ describe('Wcswidth', () => {
   it('Mixed: English and Chinese', () => {
     expect(wcswidth('Yes 重要')).toBe(8);
   });
+  it('Edge Cases', () => {
+    expect(wcswidth('')).toBe(0); // Empty string
+    expect(wcswidth(' ')).toBe(1); // Space
+    expect(wcswidth('\t')).toBe(-1); // Tab character
+    expect(wcswidth('\n')).toBe(-1); // Newline
+    expect(wcswidth('\r')).toBe(-1); // Carriage return
+    expect(wcswidth('\x1b')).toBe(-1); // Escape character
+  });
+  it('Fullwidth Characters', () => {
+    expect(wcswidth('ＡＢＣ')).toBe(6); // Fullwidth Latin
+    expect(wcswidth('１２３')).toBe(6); // Fullwidth numbers
+    expect(wcswidth('！？')).toBe(4); // Fullwidth punctuation
+  });
+  it('Combining Characters', () => {
+    expect(wcswidth('e\u0301')).toBe(1); // e with acute accent
+    expect(wcswidth('a\u0308')).toBe(1); // a with umlaut
+  });
 });
