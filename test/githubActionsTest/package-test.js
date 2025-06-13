@@ -1,4 +1,4 @@
-const { wcswidth, wcwidth } = require('simple-wcswidth');
+const { wcswidth, wcwidth } = require('../../dist/index.js');
 const assert = require('assert');
 
 function runAllTests() {
@@ -16,9 +16,9 @@ function runAllTests() {
 
   // Test 3: Mixed Content
   console.log('Running mixed content tests...');
-  assert.strictEqual(wcswidth('Hello 世界'), 9, 'Mixed ASCII and CJK should have correct width');
-  assert.strictEqual(wcswidth('123 你好'), 7, 'Mixed numbers and CJK should have correct width');
-  assert.strictEqual(wcswidth('!@# こんにちは'), 13, 'Mixed special chars and CJK should have correct width');
+  assert.strictEqual(wcswidth('Hello 世界'), 10, 'Mixed ASCII and CJK should have correct width');
+  assert.strictEqual(wcswidth('123 你好'), 8, 'Mixed numbers and CJK should have correct width');
+  assert.strictEqual(wcswidth('!@# こんにちは'), 14, 'Mixed special chars and CJK should have correct width');
 
   // Test 4: Control Characters
   console.log('Running control character tests...');
