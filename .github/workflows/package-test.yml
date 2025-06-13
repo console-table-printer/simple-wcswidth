@@ -1,1 +1,46 @@
- 
+name: Package Test
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    name: Test Package Installation
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x, 20.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build package
+        run: yarn build
+
+      - name: Create test package
+        run: |
+          mkdir test-pkg
+          cd test-pkg
+          yarn init -y
+          yarn add ../
+
+      - name: Copy test file
+        run: cp test/githubActionsTest/package-test.js test-pkg/
+
+      - name: Run package test
+        run: |
+          cd test-pkg
+          node package-test.js 
