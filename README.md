@@ -1,22 +1,11 @@
 <h1 align="center">simple-wcswidth</h1>
 <h3 align="center"> 🖥️ 💬 Simplified JS/TS implementation of wcwidth/wcswidth written by Markus Kuhn in C</h3>
 
-<p align="center">
-  <a href="https://codecov.io/gh/ayonious/simple-wcswidth">
-    <img alt="codecov" src="https://codecov.io/gh/ayonious/simple-wcswidth/branch/master/graph/badge.svg">
-  </a>
-  <a href="https://badge.fury.io/js/simple-wcswidth">
-    <img alt="npm version" src="https://badge.fury.io/js/simple-wcswidth.svg">
-  </a>
-  <a href="https://packagephobia.now.sh/result?p=simple-wcswidth">
-    <img alt="install size" src="https://packagephobia.now.sh/badge?p=simple-wcswidth@latest">
-  </a>
-</p>
-<p align="center">
-  <a href="https://github.com/semantic-release/semantic-release">
-    <img alt="semantic-release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg">
-  </a>
-</p>
+[![codecov](https://codecov.io/gh/console-table-printer/simple-wcswidth/graph/badge.svg?token=X4QPKTCB6A)](https://codecov.io/gh/console-table-printer/simple-wcswidth)
+[![npm version](https://badge.fury.io/js/simple-wcswidth.svg)](https://badge.fury.io/js/simple-wcswidth)
+[![install size](https://packagephobia.now.sh/badge?p=simple-wcswidth@latest)](https://packagephobia.now.sh/result?p=simple-wcswidth)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+
 
 # Why another wcswidth?
 
