@@ -35,7 +35,7 @@ jobs:
         with:
           name: package-dist
           path: |
-            console-table-printer-*.tgz
+            simple-wcswidth-*.tgz
             test/githubActionsTest/package-test.js
             dist/
 
@@ -63,9 +63,9 @@ jobs:
       - name: Test package
         run: |
           mkdir test-pkg && cd test-pkg
-          mv ../console-table-printer-*.tgz ./
+          mv ../simple-wcswidth-*.tgz ./
           mv ../test/githubActionsTest/package-test.js ./
           yarn init -y
-          yarn add ./console-table-printer-*.tgz
+          yarn add ./simple-wcswidth-*.tgz
           echo "Running tests on Node.js ${{ matrix.node-version }}..."
           node package-test.js
