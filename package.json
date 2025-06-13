@@ -4,7 +4,7 @@
   "description": "Simplified JS/TS implementation of wcswidth() written by Markus Kuhn in C",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "repository": "git@github.com:ayonious/simple-wcswidth.git",
+  "repository": "git@github.com:console-table-printer/simple-wcswidth.git",
   "author": "Nahiyan Kamal <noyanayihan@gmail.com>",
   "license": "MIT",
   "scripts": {

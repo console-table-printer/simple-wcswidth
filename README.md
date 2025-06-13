@@ -1,10 +1,10 @@
 <h1 align="center">simple-wcswidth</h1>
 <h3 align="center"> 🖥️ 💬 Simplified JS/TS implementation of wcwidth/wcswidth written by Markus Kuhn in C</h3>
 
+[![codecov](https://codecov.io/gh/console-table-printer/simple-wcswidth/graph/badge.svg?token=X4QPKTCB6A)](https://codecov.io/gh/console-table-printer/simple-wcswidth)
+
+
 <p align="center">
-  <a href="https://codecov.io/gh/ayonious/simple-wcswidth">
-    <img alt="codecov" src="https://codecov.io/gh/ayonious/simple-wcswidth/branch/master/graph/badge.svg">
-  </a>
   <a href="https://badge.fury.io/js/simple-wcswidth">
     <img alt="npm version" src="https://badge.fury.io/js/simple-wcswidth.svg">
   </a>
