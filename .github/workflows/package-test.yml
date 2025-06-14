@@ -43,4 +43,4 @@ jobs:
       - name: Run package test
         run: |
           cd test-pkg
-          node package-test.js 
+          node package-test.js

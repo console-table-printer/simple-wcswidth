@@ -17,4 +17,4 @@ declare function wcwidth(ucs: number): number;
  */
 declare function wcswidth(pwcs: string): number;
 
-export { wcwidth, wcswidth }; 
+export { wcwidth, wcswidth };
