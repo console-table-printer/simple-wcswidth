@@ -1,3 +1,11 @@
+## [1.1.1](https://github.com/console-table-printer/simple-wcswidth/compare/v1.1.0...v1.1.1) (2025-06-14)
+
+
+### Bug Fixes
+
+* Adding semantic configurations ([af1e3e6](https://github.com/console-table-printer/simple-wcswidth/commit/af1e3e61f300d184f62380be4230a5fe484ad9fc))
+* Adding semantic configurations ([beb8f93](https://github.com/console-table-printer/simple-wcswidth/commit/beb8f939ec648e4a40fadee8ddee4eb672440e71))
+
 ## [1.0.1](https://github.com/ayonious/simple-wcswidth/compare/v1.0.0...v1.0.1) (2020-12-09)
 
 
