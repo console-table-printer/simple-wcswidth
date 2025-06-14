@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Simplified JS/TS implementation of wcswidth() written by Markus Kuhn in C",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "index.d.ts",
   "repository": "git@github.com:console-table-printer/simple-wcswidth.git",
   "author": "Nahiyan Kamal <noyanayihan@gmail.com>",
   "license": "MIT",
@@ -20,7 +20,8 @@
     "console-width"
   ],
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts"
   ],
   "devDependencies": {
     "@eslint/js": "^9.0.0",
