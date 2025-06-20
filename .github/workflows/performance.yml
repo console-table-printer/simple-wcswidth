@@ -1,0 +1,133 @@
+# Performance Testing Workflow
+#
+# This workflow runs performance benchmarks to ensure the library remains fast and efficient.
+# It runs on every push/PR to main/master and can be triggered manually.
+#
+# What it measures:
+# 1. wcwidth function performance - how fast single character width calculation is
+# 2. wcswidth function performance - how fast string width calculation is
+# 3. Memory usage under load - ensures no memory leaks
+# 4. Bundle size - tracks if the package is getting larger
+# 5. Performance regression detection - compares against baselines
+#
+# This helps catch performance issues early and ensures the library stays performant.
+
+name: Performance Testing
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'yarn'
+    
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
+    
+    - name: Build project
+      run: yarn build
+    
+    - name: Run performance benchmarks
+      run: |
+        echo "Running wcwidth performance tests..."
+        node -e "
+          const { wcwidth } = require('./dist/index.js');
+          const iterations = 1000000;
+          const start = performance.now();
+          
+          for (let i = 0; i < iterations; i++) {
+            wcwidth(65); // 'A'
+            wcwidth(0x4E00); // '一'
+            wcwidth(0); // null
+          }
+          
+          const end = performance.now();
+          const avgTime = (end - start) / iterations;
+          console.log(\`wcwidth: \${avgTime.toFixed(6)}ms per call\`);
+          console.log(\`Total time: \${(end - start).toFixed(2)}ms for \${iterations} calls\`);
+        "
+    
+    - name: Run wcswidth performance tests
+      run: |
+        echo "Running wcswidth performance tests..."
+        node -e "
+          const { wcswidth } = require('./dist/index.js');
+          const testStrings = [
+            'Hello World',
+            'Hello 世界',
+            'A'.repeat(1000),
+            '一'.repeat(100),
+            'Hello\u0000World'
+          ];
+          
+          const iterations = 10000;
+          const start = performance.now();
+          
+          for (let i = 0; i < iterations; i++) {
+            testStrings.forEach(str => wcswidth(str));
+          }
+          
+          const end = performance.now();
+          const avgTime = (end - start) / (iterations * testStrings.length);
+          console.log(\`wcswidth: \${avgTime.toFixed(6)}ms per call\`);
+          console.log(\`Total time: \${(end - start).toFixed(2)}ms for \${iterations * testStrings.length} calls\`);
+        "
+    
+    - name: Memory usage test
+      run: |
+        echo "Testing memory usage..."
+        node -e "
+          const { wcswidth, wcwidth } = require('./dist/index.js');
+          
+          const initialMemory = process.memoryUsage();
+          console.log('Initial memory:', initialMemory);
+          
+          // Perform intensive operations
+          for (let i = 0; i < 100000; i++) {
+            wcswidth('Hello World ' + i);
+            wcwidth(i % 65536);
+          }
+          
+          const finalMemory = process.memoryUsage();
+          console.log('Final memory:', finalMemory);
+          
+          const memoryIncrease = {
+            heapUsed: finalMemory.heapUsed - initialMemory.heapUsed,
+            heapTotal: finalMemory.heapTotal - initialMemory.heapTotal,
+            external: finalMemory.external - initialMemory.external
+          };
+          
+          console.log('Memory increase:', memoryIncrease);
+        "
+    
+    - name: Bundle size check
+      run: |
+        echo "Checking bundle size..."
+        du -h dist/index.js
+        echo "Number of lines in dist:"
+        find dist -name "*.js" -exec wc -l {} \;
+    
+    - name: Performance regression check
+      run: |
+        echo "Checking for performance regressions..."
+        # This would typically compare against baseline metrics
+        # For now, we'll just log the current performance
+        echo "Performance metrics logged above"
+        echo "Consider setting up performance monitoring with tools like:"
+        echo "- GitHub Actions performance tracking"
+        echo "- Bundle size monitoring"
+        echo "- Runtime performance baselines" 

@@ -1,3 +1,17 @@
+# Code Coverage Workflow
+#
+# This workflow measures and reports code coverage to ensure comprehensive testing.
+# It runs on every push/PR to master branch.
+#
+# What it does:
+# 1. Runs all tests with coverage reporting enabled
+# 2. Generates coverage reports showing which code is tested
+# 3. Uploads coverage data to Codecov for tracking over time
+# 4. Provides coverage badges and reports in pull requests
+# 5. Helps identify untested code that needs more test coverage
+#
+# This ensures the codebase is well-tested and helps maintain code quality.
+
 name: Code Coverage
 
 on:

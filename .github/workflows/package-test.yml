@@ -1,3 +1,17 @@
+# Package Test Workflow
+#
+# This workflow tests that the published package works correctly when installed by users.
+# It runs on every push/PR to master branch.
+#
+# What it does:
+# 1. Builds the package using the current code
+# 2. Creates a test project in a separate directory
+# 3. Installs the built package as if it were published to npm
+# 4. Runs tests to ensure the package works correctly when imported
+# 5. Verifies that all exports are working as expected
+#
+# This ensures that users can actually use the package after installation.
+
 name: Package Test
 
 on:
