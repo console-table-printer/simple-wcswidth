@@ -171,17 +171,17 @@ jobs:
           echo "Checking bundle size..."
           BUNDLE_SIZE=$(du -b dist/index.js | cut -f1)
           echo "Bundle size: $BUNDLE_SIZE bytes"
-          
+
           # Bundle size assertions
           MAX_BUNDLE_SIZE=50000 # 50KB
-          
+
           if [ "$BUNDLE_SIZE" -gt "$MAX_BUNDLE_SIZE" ]; then
             echo "❌ Bundle size $BUNDLE_SIZE bytes exceeds limit of $MAX_BUNDLE_SIZE bytes"
             exit 1
           fi
-          
+
           echo "✅ Bundle size within acceptable limits"
-          
+
           echo "Number of lines in dist:"
           find dist -name "*.js" -exec wc -l {} \;
 
