@@ -1,3 +1,15 @@
+# Code Quality Workflow
+#
+# This workflow ensures code quality and consistency across the codebase.
+# It runs on every push to master and on pull request events (opened, updated, reopened).
+#
+# What it checks:
+# 1. Linting - Ensures code follows style guidelines and catches potential issues
+# 2. Formatting - Verifies code is properly formatted using Prettier
+# 3. Code style consistency - Maintains uniform code style across the project
+#
+# This helps maintain clean, readable, and consistent code that follows best practices.
+
 name: Code Quality
 
 on:

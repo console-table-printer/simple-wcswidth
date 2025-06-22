@@ -1,3 +1,18 @@
+# Test All Node.js Versions Workflow
+#
+# This workflow ensures the package works correctly across all supported Node.js versions.
+# It runs on every push/PR to master branch.
+#
+# What it does:
+# 1. Builds the package once using Node.js 22.x (latest)
+# 2. Creates a tarball package using 'yarn pack'
+# 3. Tests the built package on multiple Node.js versions (14.x, 16.x, 18.x, 20.x, 22.x)
+# 4. Verifies the package can be installed and used correctly on each version
+# 5. Uses artifacts to share the built package between jobs efficiently
+#
+# This ensures compatibility across different Node.js environments and catches
+# version-specific issues early.
+
 name: Test All Node.js Versions
 
 on:
