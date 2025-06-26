@@ -3,9 +3,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/simple-wcswidth"><img src="https://img.shields.io/npm/v/simple-wcswidth.svg" alt="npm version"></a>
-  <a href="https://github.com/console-table-printer/simple-wcswidth/actions/workflows/ci.yml"><img src="https://github.com/console-table-printer/simple-wcswidth/actions/workflows/ci.yml/badge.svg" alt="CI Status"></a>
   <a href="https://codecov.io/gh/console-table-printer/simple-wcswidth"><img src="https://codecov.io/gh/console-table-printer/simple-wcswidth/graph/badge.svg?token=X4QPKTCB6A" alt="codecov"></a>
-  <a href="https://github.com/console-table-printer/simple-wcswidth/actions/workflows/performance.yml"><img src="https://github.com/console-table-printer/simple-wcswidth/actions/workflows/performance.yml/badge.svg" alt="Performance"></a>
   <a href="https://packagephobia.now.sh/result?p=simple-wcswidth"><img src="https://packagephobia.now.sh/badge?p=simple-wcswidth@latest" alt="install size"></a>
   <a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic-release"></a>
   <a href="https://github.com/console-table-printer/simple-wcswidth/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/simple-wcswidth.svg" alt="license"></a>
@@ -14,14 +12,7 @@
 ## Installation
 
 ```bash
-# npm
 npm install simple-wcswidth
-
-# yarn
-yarn add simple-wcswidth
-
-# pnpm
-pnpm add simple-wcswidth
 ```
 
 ## Why another wcswidth?
