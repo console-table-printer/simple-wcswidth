@@ -2,35 +2,52 @@
   "name": "simple-wcswidth",
   "version": "0.0.0",
   "description": "Simplified JS/TS implementation of wcswidth() written by Markus Kuhn in C",
+  "type": "module",
   "main": "dist/index.js",
   "types": "index.d.ts",
   "repository": "git@github.com:console-table-printer/simple-wcswidth.git",
   "author": "Nahiyan Kamal <noyanayihan@gmail.com>",
   "license": "MIT",
+  "runkitExampleFilename": "examples/runkit-example.js",
   "scripts": {
     "setup": "yarn",
     "build": "tsc",
     "format": "prettier --write \"**/*.{json,ts,tsx,yml,js,jsx}\"",
     "test": "jest --config jestconfig.json",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "benchmark": "node benchmark/benchmark.js",
+    "demo": "open examples/demo.html",
+    "prepublishOnly": "yarn build"
   },
   "keywords": [
     "wcwidth",
     "wcswidth",
-    "console-width"
+    "console-width",
+    "terminal",
+    "unicode",
+    "string-width",
+    "character-width",
+    "cjk",
+    "monospace",
+    "text-width"
   ],
   "files": [
     "dist",
-    "index.d.ts"
+    "index.d.ts",
+    "examples",
+    "README.md",
+    "LICENSE"
   ],
   "devDependencies": {
     "@eslint/js": "^9.0.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@types/jest": "^29.5.14",
+    "benchmark": "^2.1.4",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.4.1",
+    "fast-check": "^4.1.1",
     "husky": "^9.1.7",
     "jest": "^30.0.0",
     "prettier": "^3.5.3",

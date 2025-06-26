@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>simple-wcswidth Demo</title>
+  <style>
+    body { 
+      font-family: monospace; 
+      max-width: 800px; 
+      margin: 0 auto; 
+      padding: 20px; 
+      line-height: 1.6;
+    }
+    .grid { 
+      display: grid; 
+      grid-template-columns: auto auto auto; 
+      gap: 10px; 
+      margin-bottom: 30px;
+    }
+    .box { 
+      border: 1px solid #ccc; 
+      padding: 5px; 
+      background-color: #f9f9f9;
+    }
+    .highlight { 
+      background-color: #ff9; 
+    }
+    .terminal {
+      background-color: #222;
+      color: #eee;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 20px 0;
+      font-family: 'Courier New', monospace;
+    }
+    .interactive {
+      margin: 30px 0;
+    }
+    input {
+      font-family: monospace;
+      padding: 5px;
+      width: 300px;
+    }
+    button {
+      padding: 5px 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>simple-wcswidth Demo</h1>
+  <p>This demo shows how terminal width is calculated for different characters. Try typing in the input field below to see the width calculation in action.</p>
+  
+  <div class="interactive">
+    <h2>Interactive Demo</h2>
+    <input type="text" id="textInput" placeholder="Type text here..." value="Hello 世界">
+    <button id="calculateBtn">Calculate Width</button>
+    <div id="result" class="terminal"></div>
+  </div>
+  
+  <h2>Examples</h2>
+  <div id="demo"></div>
+
+  <h2>Terminal Visualization</h2>
+  <div id="terminal-demo" class="terminal"></div>
+  
+  <script type="module">
+    // Import from CDN for demo purposes
+    import { wcwidth, wcswidth } from 'https://cdn.jsdelivr.net/npm/simple-wcswidth@latest/dist/index.js';
+    
+    // Define example strings
+    const examples = [
+      'Hello',
+      '你好',
+      'Hello 世界',
+      'こんにちは',
+      '1234567890',
+      '１２３４５',
+      'ASCII + 你好 + ١٢٣',
+      'Control char: \u0000'
+    ];
+    
+    // Create example grid
+    const demo = document.getElementById('demo');
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+    
+    // Headers
+    ['String', 'Visual', 'Width'].forEach(header => {
+      const cell = document.createElement('div');
+      cell.textContent = header;
+      cell.style.fontWeight = 'bold';
+      grid.appendChild(cell);
+    });
+    
+    // Examples
+    examples.forEach(str => {
+      // String cell
+      const strCell = document.createElement('div');
+      strCell.className = 'box';
+      strCell.textContent = JSON.stringify(str);
+      grid.appendChild(strCell);
+      
+      // Visual cell
+      const visualCell = document.createElement('div');
+      visualCell.className = 'box';
+      visualCell.textContent = str;
+      grid.appendChild(visualCell);
+      
+      // Width cell
+      const widthCell = document.createElement('div');
+      widthCell.className = 'box';
+      const width = wcswidth(str);
+      widthCell.textContent = `${width} columns`;
+      grid.appendChild(widthCell);
+    });
+    
+    demo.appendChild(grid);
+
+    // Terminal visualization
+    function visualizeInTerminal(text) {
+      const width = wcswidth(text);
+      let result = '';
+      
+      // Top border
+      result += '+' + '-'.repeat(width) + '+\n';
+      
+      // Content
+      result += '|' + text + ' '.repeat(Math.max(0, width - wcswidth(text))) + '|\n';
+      
+      // Bottom border
+      result += '+' + '-'.repeat(width) + '+\n';
+      
+      return result;
+    }
+
+    // Terminal demo
+    const terminalDemo = document.getElementById('terminal-demo');
+    terminalDemo.innerHTML = examples.slice(0, 4).map(visualizeInTerminal).join('\n').replace(/\n/g, '<br>');
+
+    // Interactive demo
+    const textInput = document.getElementById('textInput');
+    const calculateBtn = document.getElementById('calculateBtn');
+    const result = document.getElementById('result');
+
+    function updateResult() {
+      const text = textInput.value;
+      const width = wcswidth(text);
+      
+      let output = `Text: "${text}"\n`;
+      output += `Width: ${width} columns\n\n`;
+      
+      // Character breakdown
+      output += 'Character breakdown:\n';
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const code = char.charCodeAt(0);
+        const charWidth = wcwidth(code);
+        output += `- "${char}" (U+${code.toString(16).padStart(4, '0')}): ${charWidth} column${charWidth !== 1 ? 's' : ''}\n`;
+      }
+      
+      // Visualization
+      output += '\nVisualization:\n';
+      output += visualizeInTerminal(text);
+      
+      result.innerHTML = output.replace(/\n/g, '<br>');
+    }
+
+    calculateBtn.addEventListener('click', updateResult);
+    textInput.addEventListener('keyup', event => {
+      if (event.key === 'Enter') {
+        updateResult();
+      }
+    });
+
+    // Initialize with default value
+    updateResult();
+  </script>
+</body>
+</html> 
