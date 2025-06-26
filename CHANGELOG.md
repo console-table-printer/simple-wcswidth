@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/console-table-printer/simple-wcswidth/compare/v1.1.1...v1.1.2) (2025-06-26)
+
+
+### Bug Fixes
+
+* update deps ([59629e3](https://github.com/console-table-printer/simple-wcswidth/commit/59629e304ce96b4ad0cac7cc3e228a9369b51378))
+
 ## [1.1.1](https://github.com/console-table-printer/simple-wcswidth/compare/v1.1.0...v1.1.1) (2025-06-14)
 
 
