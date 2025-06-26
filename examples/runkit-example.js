@@ -20,23 +20,27 @@ console.log(alignText('Hello 世界', 10) + '|');
 // Practical example: Create a fixed-width table
 function createTable(rows) {
   const columnWidths = [10, 15];
-  
+
   // Create header
-  console.log('+' + '-'.repeat(columnWidths[0]) + '+' + '-'.repeat(columnWidths[1]) + '+');
-  
+  console.log(
+    '+' + '-'.repeat(columnWidths[0]) + '+' + '-'.repeat(columnWidths[1]) + '+'
+  );
+
   // Print rows
   for (const row of rows) {
     console.log(
-      '|' + 
-      alignText(row[0], columnWidths[0]) + 
-      '|' + 
-      alignText(row[1], columnWidths[1]) +
-      '|'
+      '|' +
+        alignText(row[0], columnWidths[0]) +
+        '|' +
+        alignText(row[1], columnWidths[1]) +
+        '|'
     );
   }
-  
+
   // Create footer
-  console.log('+' + '-'.repeat(columnWidths[0]) + '+' + '-'.repeat(columnWidths[1]) + '+');
+  console.log(
+    '+' + '-'.repeat(columnWidths[0]) + '+' + '-'.repeat(columnWidths[1]) + '+'
+  );
 }
 
 // Example usage
@@ -46,4 +50,4 @@ createTable([
   ['李明', 'China'],
   ['Юрий', 'Russia'],
   ['Ñandú', 'Argentina'],
-]); 
+]);
